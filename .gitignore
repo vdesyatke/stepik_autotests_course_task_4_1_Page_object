@@ -1,3 +1,7 @@
 /.pytest_cache
 test.py
-/pages/__pycache__
+pages/__pycache__/
+*.pyc
+pages/__pycache__/base_page.cpython-38.pyc
+pages/__pycache__/locators.cpython-38.pyc
+pages/__pycache__/main_page.cpython-38.pyc
