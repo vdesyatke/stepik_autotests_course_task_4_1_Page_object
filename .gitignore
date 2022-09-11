@@ -1,5 +1,4 @@
 /.pytest_cache
-test.py
 pages/__pycache__/
 *.pyc
 pages/__pycache__/base_page.cpython-38.pyc
