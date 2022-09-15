@@ -12,5 +12,6 @@ class ProductPageLocators():
 
     ADDABLE_ITEM_NAME = (By.CSS_SELECTOR, '#content_inner > article > div.row > div.col-sm-6.product_main > h1')
     ADDABLE_ITEM_PRICE = (By.CSS_SELECTOR, '#content_inner > article > div.row > div.col-sm-6.product_main > p.price_color')
-    NAME_OF_ITEM_ADDED_TO_BASKET_IN_ALERT_MESSAGE = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div > strong')
-    BASKET_AMOUNT_IN_ALERT_MESSAGE = (By.CSS_SELECTOR, '#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong')
+    NAME_OF_ITEM_ADDED_TO_BASKET_IN_INNER_ALERT_MESSAGE = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div > strong')
+    BASKET_AMOUNT_IN_INNER_ALERT_MESSAGE = (By.CSS_SELECTOR, '#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong')
+    INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div')
