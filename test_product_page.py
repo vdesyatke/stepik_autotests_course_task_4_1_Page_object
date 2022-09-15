@@ -25,11 +25,12 @@ def test_guest_can_add_product_to_basket(browser, link_nr):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link_nr}"
     page = ProductPage(browser, link)
     page.open()
-
+    
     page.add_to_basket(quiz_solve=True)
 
     assert page.addable_item_name == page.item_name_in_alert_message
     assert page.addable_item_price == page.amount_of_basket_in_alert_message
+
 
 # Открываем страницу товара
 # Добавляем товар в корзину
