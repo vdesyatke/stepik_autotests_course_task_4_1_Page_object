@@ -16,4 +16,4 @@ def browser(request):
         yield browser
         browser.quit()
     else:
-        raise pytest.UsageError("--language should be en or rugit")
+        raise pytest.UsageError("--language should be en or ru")
