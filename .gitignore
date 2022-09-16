@@ -5,3 +5,6 @@ pages/__pycache__/base_page.cpython-38.pyc
 pages/__pycache__/locators.cpython-38.pyc
 pages/__pycache__/main_page.cpython-38.pyc
 test.py
+__pycache__/
+/__pychache__/
+/pages/__pycache__/
