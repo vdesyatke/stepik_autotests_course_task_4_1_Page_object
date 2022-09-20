@@ -19,3 +19,13 @@ class ProductPageLocators:
     NAME_OF_ITEM_ADDED_TO_BASKET_IN_INNER_ALERT_MESSAGE = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div > strong')
     BASKET_AMOUNT_IN_INNER_ALERT_MESSAGE = (By.CSS_SELECTOR, '#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong')
     INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div')
+
+
+class MainPageLocators:
+    LINK_TO_BASKET_IN_HEADER_OF_MAIN_PAGE = (By.CSS_SELECTOR, '#default > header > div.page_inner > div > div.basket-mini.pull-right.hidden-xs > span > a')
+
+
+class BasketPageLocators:
+    TEXT_GOODS_IN_BASKET = (By.CSS_SELECTOR, '#content_inner > div.basket-title.hidden-xs > div > h2')
+    TEXT_BASKET_IS_EMPTY = (By.CSS_SELECTOR, '#content_inner > p')
+
