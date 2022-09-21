@@ -1,6 +1,8 @@
 from .pages.product_page import ProductPage
 from .pages.locators import ProductPageLocators
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
+from .pages.locators import BasketPageLocators
 import time
 import pytest
 
@@ -72,3 +74,17 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
+
+
+# 1. Гость открывает страницу товара
+# 2. Переходит в корзину по кнопке в шапке
+# 3. Ожидаем, что в корзине нет товаров
+# 4. Ожидаем, что есть текст о том что корзина пуста
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_basket()
+    basket_page = BasketPage(browser, browser.current_url)
+    assert basket_page.is_not_element_present(*BasketPageLocators.TEXT_GOODS_IN_BASKET), 'Basket should be empty, but there are goods in basket'
+    assert basket_page.is_element_present(*BasketPageLocators.TEXT_BASKET_IS_EMPTY) and basket_page.browser.find_element(*BasketPageLocators.TEXT_BASKET_IS_EMPTY).text[:18] == 'Ваша корзина пуста', 'Basket should be empty, but there are goods in basket'
