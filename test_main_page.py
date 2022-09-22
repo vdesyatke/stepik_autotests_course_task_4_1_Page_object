@@ -33,6 +33,5 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page.open()
     page.go_to_basket()
     basket_page = BasketPage(browser, browser.current_url)
-
     assert basket_page.is_not_element_present(*BasketPageLocators.TEXT_GOODS_IN_BASKET), 'Basket should be empty, but there are goods in basket'
     assert basket_page.is_element_present(*BasketPageLocators.TEXT_BASKET_IS_EMPTY) and basket_page.browser.find_element(*BasketPageLocators.TEXT_BASKET_IS_EMPTY).text[:18] == 'Ваша корзина пуста', 'Basket should be empty, but there are goods in basket'

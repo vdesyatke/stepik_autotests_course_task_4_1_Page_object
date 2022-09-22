@@ -8,7 +8,7 @@ import pytest
 
 
 # @pytest.mark.parametrize('link_nr', list(range(0,10)))
-@pytest.mark.skip(reason="Too long to wait for 10 pages open, pass quiz and add item to basket")
+# @pytest.mark.skip(reason="Too long to wait for 10 pages open, pass quiz and add item to basket")
 @pytest.mark.parametrize('link_nr', [0,1,2,3,4,5,6,pytest.param(7, marks=pytest.mark.xfail),8,9])
 def test_guest_can_add_product_to_basket(browser, link_nr):
     # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
@@ -17,9 +17,7 @@ def test_guest_can_add_product_to_basket(browser, link_nr):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link_nr}"
     page = ProductPage(browser, link)
     page.open()
-
     page.add_to_basket(quiz_solve=True)
-
     assert page.addable_item_name == page.item_name_in_alert_message
     assert page.addable_item_price == page.amount_of_basket_in_alert_message
 
