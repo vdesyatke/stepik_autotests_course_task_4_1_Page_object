@@ -17,13 +17,3 @@ class ProductPage(BasePage):
         self.addable_item_price = self.browser.find_element(*ProductPageLocators.ADDABLE_ITEM_PRICE).text
         self.amount_of_basket_in_alert_message = self.browser.find_element(
             *ProductPageLocators.BASKET_AMOUNT_IN_INNER_ALERT_MESSAGE).text
-
-
-    # def get_addable_item_name(self):
-    #     return self.browser.find_element(*ProductPageLocators.ADDABLE_ITEM_NAME).text
-    #
-    # def get_item_name_in_alert_message(self):
-    #     return self.browser.find_element(*ProductPageLocators.NAME_OF_ITEM_ADDED_TO_BASKET_IN_INNER_ALERT_MESSAGE).text
-    #
-    # def get_amount_of_basket_in_alert_message(self):
-    #     return self.browser.find_element(*ProductPageLocators.BASKET_AMOUNT_IN_INNER_ALERT_MESSAGE).text
