@@ -1,4 +1,6 @@
 /.pytest_cache
+/.idea
+/.git
 pages/__pycache__/
 *.pyc
 pages/__pycache__/base_page.cpython-38.pyc
@@ -8,9 +10,5 @@ test.py
 __pycache__/
 /__pychache__/
 /pages/__pycache__/
-
 __pycache__/conftest.cpython-38-pytest-7.1.2.pyc
 __pycache__/test_main_page.cpython-38-pytest-7.1.2.pyc
-pages/__pycache__/base_page.cpython-38.pyc
-pages/__pycache__/locators.cpython-38.pyc
-pages/__pycache__/main_page.cpython-38.pyc
