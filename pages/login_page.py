@@ -2,6 +2,7 @@ import time
 
 from .base_page import BasePage
 from .locators import LoginPageLocators
+from .locators import BasePageLocators
 
 
 class LoginPage(BasePage):
@@ -27,3 +28,8 @@ class LoginPage(BasePage):
         button = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON)
         time.sleep(1)
         button.click()
+
+
+    def should_be_user_icon(self):
+        assert self.is_element_present(
+            *BasePageLocators.USER_ICON), 'No user icon found, seems like no user logged in'

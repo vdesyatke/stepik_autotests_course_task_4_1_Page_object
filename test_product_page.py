@@ -16,8 +16,7 @@ def test_guest_can_add_product_to_basket(browser, link_nr):
     page = ProductPage(browser, link)
     page.open()
     page.add_to_basket(quiz_solve=True)
-    assert page.addable_item_name == page.item_name_in_alert_message
-    assert page.addable_item_price == page.amount_of_basket_in_alert_message
+    page.should_be_added_name_price_same_in_inner_alert_message()
 
 
 @pytest.mark.xfail
@@ -26,7 +25,7 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link)
     page.open()
     page.add_to_basket(quiz_solve=False)
-    assert page.is_not_element_present(*ProductPageLocators.INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS, 20)
+    page.should_not_be_success_inner_alert()
 
 
 def test_guest_cant_see_success_message(browser):
@@ -69,12 +68,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.open()
     page.go_to_basket()
     basket_page = BasketPage(browser, browser.current_url)
-    assert basket_page.is_not_element_present(
-        *BasketPageLocators.TEXT_GOODS_IN_BASKET), 'Basket should be empty'
-    assert basket_page.is_element_present(
-        *BasketPageLocators.TEXT_BASKET_IS_EMPTY) and basket_page.browser.find_element(
-        *BasketPageLocators.TEXT_BASKET_IS_EMPTY).text[
-                                                      :18] == 'Ваша корзина пуста', 'Basket should be empty'
+    basket_page.should_be_empty()
 
 
 class TestUserAddToBasketFromProductPage:
@@ -87,12 +81,11 @@ class TestUserAddToBasketFromProductPage:
         login_link.click()
         time.sleep(1)
         login_page = LoginPage(browser, browser.current_url)
-        # assert login_page.should_be_login_page(), 'Seems like this is not login page'
         login_page.should_be_login_page()
         email = str(time.time()) + '@fakemail.org'
         password = '9023719528'
         login_page.register_new_user(email=email, password=password)
-        assert login_page.is_element_present(*BasePageLocators.USER_ICON), 'No user icon found, seems like no user logged in'
+        login_page.should_be_user_icon()
 
     def test_user_cant_see_success_message(self, browser):
         link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
@@ -106,5 +99,4 @@ class TestUserAddToBasketFromProductPage:
         page = ProductPage(browser, link)
         page.open()
         page.add_to_basket(quiz_solve=False)
-        assert page.addable_item_name == page.item_name_in_alert_message
-        assert page.addable_item_price == page.amount_of_basket_in_alert_message
+        page.should_be_added_name_price_same_in_inner_alert_message()

@@ -3,6 +3,8 @@ from .locators import ProductPageLocators
 import time
 
 class ProductPage(BasePage):
+
+
     def add_to_basket(self, quiz_solve=True):
         button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         button.click()
@@ -17,3 +19,10 @@ class ProductPage(BasePage):
         self.addable_item_price = self.browser.find_element(*ProductPageLocators.ADDABLE_ITEM_PRICE).text
         self.amount_of_basket_in_alert_message = self.browser.find_element(
             *ProductPageLocators.BASKET_AMOUNT_IN_INNER_ALERT_MESSAGE).text
+
+    def should_not_be_success_inner_alert(self):
+        assert self.is_not_element_present(*ProductPageLocators.INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS)
+
+    def should_be_added_name_price_same_in_inner_alert_message(self):
+        assert self.addable_item_name == self.item_name_in_alert_message
+        assert self.addable_item_price == self.amount_of_basket_in_alert_message
