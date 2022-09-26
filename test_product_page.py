@@ -1,12 +1,13 @@
-from .pages.product_page import ProductPage
+import time
+
+import pytest
+
+from .pages.basket_page import BasketPage
+from .pages.locators import BasePageLocators
 from .pages.locators import ProductPageLocators
 from .pages.login_page import LoginPage
-from .pages.basket_page import BasketPage
-from .pages.locators import BasketPageLocators
 from .pages.main_page import MainPage
-from .pages.locators import BasePageLocators
-import pytest
-import time
+from .pages.product_page import ProductPage
 
 
 @pytest.mark.need_review
