@@ -9,11 +9,9 @@ import pytest
 import time
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('link_nr', [0, 1, 2, 3, 4, 5, 6, pytest.param(7, marks=pytest.mark.xfail), 8, 9])
 def test_guest_can_add_product_to_basket(browser, link_nr):
-    # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-    # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-    # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link_nr}"
     page = ProductPage(browser, link)
     page.open()
@@ -22,9 +20,6 @@ def test_guest_can_add_product_to_basket(browser, link_nr):
     assert page.addable_item_price == page.amount_of_basket_in_alert_message
 
 
-# Открываем страницу товара
-# Добавляем товар в корзину
-# Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
@@ -34,8 +29,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     assert page.is_not_element_present(*ProductPageLocators.INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS, 20)
 
 
-# Открываем страницу товара
-# Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 def test_guest_cant_see_success_message(browser):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
     page = ProductPage(browser, link)
@@ -43,9 +36,6 @@ def test_guest_cant_see_success_message(browser):
     assert page.is_not_element_present(*ProductPageLocators.INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS)
 
 
-# Открываем страницу товара
-# Добавляем товар в корзину
-# Проверяем, что нет сообщения об успехе с помощью is_disappeared
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
@@ -62,6 +52,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -71,10 +62,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page.should_be_login_page()
 
 
-# 1. Гость открывает страницу товара
-# 2. Переходит в корзину по кнопке в шапке
-# 3. Ожидаем, что в корзине нет товаров
-# 4. Ожидаем, что есть текст о том что корзина пуста
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
     page = ProductPage(browser, link)
@@ -112,6 +100,7 @@ class TestUserAddToBasketFromProductPage:
         page.open()
         assert page.is_not_element_present(*ProductPageLocators.INNER_ALERT_MESSAGE_ITEM_ADDED_SUCCESS)
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
         page = ProductPage(browser, link)
